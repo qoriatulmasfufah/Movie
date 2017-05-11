@@ -1,6 +1,7 @@
 package layout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import id.sch.smktelkom_mlg.privateassignment.xirpl127.movie.HomeListItem;
+import id.sch.smktelkom_mlg.privateassignment.xirpl127.movie.MovieActivity;
 import id.sch.smktelkom_mlg.privateassignment.xirpl127.movie.R;
 
 /**
@@ -37,7 +40,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     } //menyambungkan ke xmlnya
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final HomeListItem homeListItem = homeListItems.get(position);// yg homeListItem digunakan untuk .load
 
         holder.textViewHead.setText(homeListItem.getHead());
@@ -47,6 +50,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 .with(context)
                 .load(homeListItem.getImageUrl())
                 .into(holder.imageViewOtof);
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Kon ngeklik" + homeListItem.getHead(), Toast.LENGTH_LONG).show();
+                Intent singleBlogIntent = new Intent(context, MovieActivity.class);
+                singleBlogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //intent single.. var baru untuk membuka activity dari fragment
+                singleBlogIntent.putExtra("blog_id", position);//put extra ngirim var, unutk mengirim position nya
+                context.startActivity(singleBlogIntent);//menampilkan activity
+
+            }
+        });
     }//mau diapakan viewnya
 
     @Override
@@ -59,7 +74,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         public TextView textViewHead;
         public TextView textViewDesc;
         public ImageView imageViewOtof;
-        public LinearLayout linearLayout;
+        public LinearLayout linearLayout;//buat ini dulu baru bisa buat di linear layout pada line -->holer bawahnya glide
 
         public ViewHolder(View itemView) {
             super(itemView);
