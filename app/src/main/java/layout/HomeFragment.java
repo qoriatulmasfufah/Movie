@@ -33,8 +33,8 @@ import id.sch.smktelkom_mlg.privateassignment.xirpl127.movie.R;
  */
 public class HomeFragment extends Fragment {
 
-    //private static final String URL_DATA = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=5756c54cdcc547bba5c1774aac661fa7";
-    private static final String URL_DATA = "https://api.nytimes.com/svc/mostpopular/v2/mostshared/Automobiles/30.json?api-key=5756c54cdcc547bba5c1774aac661fa7";
+    private static final String URL_DATA = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=5756c54cdcc547bba5c1774aac661fa7";
+    // private static final String URL_DATA = "https://api.themoviedb.org/3/movie/550?api_key=5df3612d2ed0eccd328404739b957054";
     public List<HomeListItem> listItems;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -100,9 +100,9 @@ public class HomeFragment extends Fragment {
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject o = array.getJSONObject(i);
                                 HomeListItem item = new HomeListItem(
-                                        o.getString("url"),
-                                        o.getString("section"),
-                                        o.getString("title")
+                                        o.getJSONObject("multimedia").getString("src"),
+                                        o.getString("display_title"),
+                                        o.getString("byline")
                                 );
                                 listItems.add(item);
                             }

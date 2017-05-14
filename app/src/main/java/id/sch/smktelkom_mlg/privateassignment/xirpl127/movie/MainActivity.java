@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import layout.HomeFragment;
-import layout.SecondFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -94,17 +93,9 @@ public class MainActivity extends AppCompatActivity
             fragment = new HomeFragment();
             setTitle("Movie");
 
-        } else if (id == R.id.nav_gallery) {
-            fragment = new SecondFragment();
-            setTitle("Deskripsi");
-
         } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+            fragment = new PlaceFragment();
+            setTitle("Movie");
 
         }
 

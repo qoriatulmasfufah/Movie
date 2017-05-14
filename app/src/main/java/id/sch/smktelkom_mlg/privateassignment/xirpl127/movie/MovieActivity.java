@@ -1,10 +1,9 @@
 package id.sch.smktelkom_mlg.privateassignment.xirpl127.movie;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -23,14 +22,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MovieActivity extends AppCompatActivity {
 
     private static final String URL_DATA = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=5756c54cdcc547bba5c1774aac661fa7";
+    //private static final String URL_DATA = "https://api.themoviedb.org/3/movie/550?api_key=5df3612d2ed0eccd328404739b957054";
     public TextView textViewHeadet;
     public TextView textViewDescet;
     public TextView textViewReview;
     public ImageView imageViewDetail;
+    public String urlGambar;
     public String url;
+    boolean isPressed = true;
+    Place place;
+    FloatingActionButton fab;
+    boolean isNew;
+    ArrayList<Place> fItem;
     private Integer mPostkey = null;//diambl dari blog id
 
     @Override
@@ -43,18 +51,23 @@ public class MovieActivity extends AppCompatActivity {
         mPostkey = getIntent().getExtras().getInt("blog_id");
         loadRecyclerViewData(); //menampilkan detail pada sesuatu yg dipilih
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //      .setAction("Action", null).show();
-                Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (isPressed) {
+                    doSave();
+                    Snackbar.make(view, "Berhasil ditambahkan ke favorit", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    Snackbar.make(view, "Artikel favorit Anda", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                isPressed = !isPressed;
 
             }
         });
+
 
         textViewHeadet = (TextView) findViewById(R.id.textViewHeadet);
         textViewDescet = (TextView) findViewById(R.id.textViewDescet);
@@ -69,6 +82,21 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void doSave() {
+        String title = textViewHeadet.getText().toString();
+        String deskripsi = textViewDescet.getText().toString();
+        String urlgambar = urlGambar;
+        place = new Place(title, deskripsi, urlgambar);
+        place.save();
+
+//        SharedPreferences.Editor editor = getSharedPreferences(title, MODE_PRIVATE).edit();
+//        editor.putBoolean("isNew", true);
+//        editor.commit();
+
+
+    }
+
 
     private void loadRecyclerViewData() {
 
@@ -89,14 +117,26 @@ public class MovieActivity extends AppCompatActivity {
 
                             setTitle(" ");
 
-                            textViewHeadet.setText(o.getString("display_title"));
+                            /*textViewHeadet.setText(o.getString("display_title"));
                             textViewDescet.setText(o.getString("byline"));
                             textViewReview.setText(o.getString("summary_short"));
                             url = o.getJSONObject("link").getString("url");
                             Glide
                                     .with(MovieActivity.this)
                                     .load(o.getJSONObject("multimedia").getString("src"))
+                                    .into(imageViewDetail);*/
+
+                            textViewHeadet.setText(o.getString("display_title"));
+                            textViewDescet.setText(o.getString("byline"));
+                            textViewReview.setText(o.getString("summary_short"));
+                            url = o.getJSONObject("link").getString("url");
+
+                            Glide
+                                    .with(MovieActivity.this)
+                                    .load(o.getJSONObject("multimedia").getString("src"))
                                     .into(imageViewDetail);
+
+                            urlGambar = o.getJSONObject("multimedia").getString("src");
 
 
                         } catch (JSONException e) {

@@ -13,7 +13,7 @@
         android:elevation="10dp"
         app:cardCornerRadius="3dp">
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/LinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,29 +23,48 @@
             <ImageView
                 android:id="@+id/imageViewOtof"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textViewHead"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="7dp"
-                android:paddingRight="7dp"
-                android:paddingTop="7dp"
-                android:text="Heading"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-                android:textSize="8pt" />
+                android:cropToPadding="true"
+                android:src="@drawable/coba" />
 
-            <TextView
-                android:id="@+id/textViewDesc"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="7dp"
-                android:paddingLeft="7dp"
-                android:paddingRight="7dp"
-                android:textSize="4pt" />
+                android:layout_gravity="bottom|end"
+                android:orientation="vertical">
 
-        </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@color/colorAccent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:text="ASELOLE"
+                    android:textSize="6pt"
+                    android:textStyle="normal|italic" />
+
+                <TextView
+                    android:id="@+id/textViewHead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:text="Heading"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                    android:textColor="#ffffff"
+                    android:textSize="10pt" />
+
+
+            </LinearLayout>
+
+
+        </FrameLayout>
 
     </android.support.v7.widget.CardView>
 

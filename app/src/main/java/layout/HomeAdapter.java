@@ -6,10 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -54,7 +53,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Kon ngeklik" + homeListItem.getHead(), Toast.LENGTH_LONG).show();
                 Intent singleBlogIntent = new Intent(context, MovieActivity.class);
                 singleBlogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //intent single.. var baru untuk membuka activity dari fragment
                 singleBlogIntent.putExtra("blog_id", position);//put extra ngirim var, unutk mengirim position nya
@@ -74,7 +72,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         public TextView textViewHead;
         public TextView textViewDesc;
         public ImageView imageViewOtof;
-        public LinearLayout linearLayout;//buat ini dulu baru bisa buat di linear layout pada line -->holer bawahnya glide
+        public FrameLayout linearLayout;//buat ini dulu baru bisa buat di linear layout pada line -->holer bawahnya glide
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -82,7 +80,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
             imageViewOtof = (ImageView) itemView.findViewById(R.id.imageViewOtof);
-            linearLayout = (LinearLayout) itemView.findViewById(R.id.LinearLayout);
+            linearLayout = (FrameLayout) itemView.findViewById(R.id.LinearLayout);
         }
     }//inisialisasi
 }
