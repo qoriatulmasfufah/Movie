@@ -23,10 +23,11 @@
       Sugar ORM
  
 ## Deskripsi Singkat
-      Aplikasi Movie diperuntukkan bagi Anda pecinta Film. Dalam aplikasi ini terdapat list film yang sedang ditayangkan di bioskop dan sangat direkomendasikan
-      bagi para user. Aplikasi ini memiliki banyak data yang menampilkan detail data film secara online. Apabila dalam detail
-      user memilih icon bintang maka secara otomatis list film yang dipilih tersebut akan masuk dalam halaman favorit. 
-      Jika film yang ada pada halaman favorit sudah tidak disukai oleh user, maka user bisa menghapusnya dengan menekan button delete.
+      Aplikasi Movie diperuntukkan bagi Anda pecinta Film. Dalam aplikasi ini terdapat list film yang sedang ditayangkan di 
+      bioskop dan sangat direkomendasikan bagi para user. Aplikasi ini memiliki banyak data yang menampilkan detail data film secara 
+      online. Apabila dalam detail user memilih icon bintang maka secara otomatis list film yang dipilih tersebut akan masuk dalam 
+      halaman favorit. Jika film yang ada pada halaman favorit sudah tidak disukai oleh user, maka user bisa menghapusnya dengan menekan 
+      button delete.
       
 ## Kelebihan Aplikasi
    - User Interface sangat menarik
